@@ -5,7 +5,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import java.io.File
 import javax.imageio.ImageIO
@@ -23,9 +25,10 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "Day Launcher",
+        state = WindowState(width = 1000.dp),
+        resizable = false
     ) {
         window.iconImage = ImageIO.read(Thread.currentThread().contextClassLoader.getResource("icons/Launcher_Icon.png"))
-        window.setSize(976, 602)
         MainScreen()
     }
 }

@@ -15,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import core.Colors
@@ -116,14 +117,11 @@ fun MainUI() {
     ) {
         Spacer(Modifier.height(80.dp))
 
-        Text(
+        DefaultText(
             "Minecraft Version",
-            color = Color.White,
-            fontSize = 32.sp,
-            fontFamily = loadOpenSans(),
-            fontWeight = FontWeight.Bold
+            32.sp,
+            Color.White,
         )
-
 
         Text(
             "Minecraft is an open-world sandbox game that lets you explore, build, and survive in a blocky universe. Whether you're crafting alone or adventuring with friends, it offers endless creativity and fun",
@@ -154,14 +152,12 @@ fun MainUI() {
                     contentDescription = "Play",
                     tint = Color.Unspecified
                 )
-                Text(
+                DefaultText(
                     "Play",
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    fontSize = 14.sp,
-                    fontFamily = loadOpenSans(),
-                    fontWeight = FontWeight.Bold
+                    14.sp,
+                    Color.White,
                 )
+
             }
 
             Box {
@@ -176,6 +172,7 @@ fun MainUI() {
                         contentDescription = "Select Version",
                         tint = Color.Unspecified
                     )
+
                     Text(
                         "Select Version",
                         textAlign = TextAlign.Center,
@@ -185,45 +182,32 @@ fun MainUI() {
                         fontWeight = FontWeight.Bold
                     )
                 }
-
-                DropdownMenu(
-                    expanded = expanded,
-                    onDismissRequest = { expanded = false }
-                ) {
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.20.1"); expanded = false }
+                MaterialTheme(shapes = MaterialTheme.shapes.copy(medium = RoundedCornerShape(12.dp))) {
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        modifier = Modifier.background(Colors.PrimaryColor)
                     ) {
-                        Text("1.20.1")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.20.1"); expanded = false }
-                    ) {
-                        Text("1.20.1")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.20.1"); expanded = false }
-                    ) {
-                        Text("1.20.1")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.20.1"); expanded = false }
-                    ) {
-                        Text("1.20.1")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.20.1"); expanded = false }
-                    ) {
-                        Text("1.20.1")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.19.4"); expanded = false }
-                    ) {
-                        Text("1.19.4")
-                    }
-                    DropdownMenuItem(
-                        onClick = { println("Версія 1.18.2"); expanded = false }
-                    ) {
-                        Text("1.18.2")
+                        DropdownMenuItem(
+                            onClick = { println("Версія Minecraft 1.16.5 Optifine"); expanded = false }
+                        ) {
+                            DefaultText("Minecraft 1.16.5 Optifine", 14.sp, Color.White)
+                        }
+                        DropdownMenuItem(
+                            onClick = { println("Версія Minecraft 1.14.4 Optifine"); expanded = false }
+                        ) {
+                            DefaultText("Minecraft 1.14.4 Optifine", 14.sp, Color.White)
+                        }
+                        DropdownMenuItem(
+                            onClick = { println("Версія Minecraft 1.12.2 Optifine"); expanded = false }
+                        ) {
+                            DefaultText("Minecraft 1.12.2 Optifine", 14.sp, Color.White)
+                        }
+                        DropdownMenuItem(
+                            onClick = { println("Версія Minecraft 1.8.9 Optifine"); expanded = false }
+                        ) {
+                            DefaultText("Minecraft 1.8.9 Optifine", 14.sp, Color.White)
+                        }
                     }
                 }
             }
@@ -249,25 +233,31 @@ fun MainUI() {
             Column(
                 modifier = Modifier.padding(4.dp),
             ) {
-                Text(
+                DefaultText(
                     "Nickname",
-                    modifier = Modifier.padding(1.dp),
-                    textAlign = TextAlign.Center,
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    fontFamily = loadOpenSans(),
-                    fontWeight = FontWeight.Bold
+                    16.sp,
+                    Color.White,
                 )
-                Text(
+                DefaultText(
                     "Local Account",
-                    modifier = Modifier.padding(1.dp),
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
-                    fontFamily = loadOpenSans(),
-                    fontWeight = FontWeight.Bold
+                    12.sp,
+                    Color.Gray,
                 )
             }
         }
     }
+}
+
+
+@Composable
+fun DefaultText(text: String, size: TextUnit, color: Color) {
+    Text(
+        text,
+        modifier = Modifier.padding(1.dp),
+        textAlign = TextAlign.Center,
+        color = color,
+        fontSize = size,
+        fontFamily = loadOpenSans(),
+        fontWeight = FontWeight.Bold
+    )
 }
